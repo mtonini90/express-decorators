@@ -6,6 +6,6 @@ export interface ControllerConfig {
 }
 
 export interface ControllerModel extends ControllerConfig {
-	routes: RouterConfig[];
+	routes: Array<RouterConfig>;
 	routeMiddleware: Array<any>;
 }

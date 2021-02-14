@@ -1,4 +1,3 @@
-import {ContainerKeys} from '../const/container-keys';
 import {setToken} from '../utils/reflect';
 
 export function Injectable() {

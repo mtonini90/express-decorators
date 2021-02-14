@@ -10,6 +10,7 @@ export function ExpressApp() {
 			},
 			enumerable: true,
 			configurable: true,
+			writable: false,
 		});
 	};
 }

@@ -23,14 +23,14 @@ export class Server {
 		});
 	}
 
-	static async listen() {
+	static listen() {
 		this._app.listen(this._config.port, () => {
 			console.log(`App listening at http://localhost:${this._config.port}`);
 		});
 	}
 
-	static async initControllers(controllers: Ctor[]) {
-		controllers.forEach(async (controller) => {
+	static initControllers(controllers: Ctor[]) {
+		controllers.forEach((controller) => {
 			const c = Container.registry(controller);
 			if (c) {
 				const {path, middleware, routes, routeMiddleware} = Reflect.getMetadata(
@@ -65,9 +65,9 @@ export class Server {
 		const s: any = Container.registry(server); // TODO tipizzare
 		this.config(s);
 
-		await s.beforeInit();
-		await this.initControllers(controllers);
+		s.beforeInit();
+		this.initControllers(controllers);
 		await this.connectDB();
-		await this.listen();
+		this.listen();
 	}
 }

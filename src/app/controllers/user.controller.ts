@@ -4,19 +4,19 @@ import {Controller, Get, Middleware} from '../core/decorators/index';
 	path: '/user',
 })
 export class UserController {
-	@Get('/')
-	prova(req: any, res: any) {
-		res.send('testo di user');
+	@Get('/signin')
+	signin(req: any, res: any) {
+		res.send('signin');
 	}
 
-	@Get('/user2')
-	prova2(req: any, res: any) {
-		res.send('testo di user 2');
+	@Get('/signup')
+	signup(req: any, res: any) {
+		res.send('signup');
 	}
 
-	@Middleware({for: '/user2'})
-	u3(req: any, res: any, next: any) {
-		console.log('Middleware user2');
+	@Middleware({for: '/signup'})
+	middlewareSignup(req: any, res: any, next: any) {
+		console.log('Middleware signup');
 		next();
 	}
 }

@@ -13,19 +13,19 @@ class Container {
 				props = paramtypes.map((param: any) => this.registry(param));
 			}
 			const ctor = Reflect.construct(type, props);
-			const key = this.key(type);
+			const key = this._key(type);
 			this.providers.set(key, ctor);
 			return ctor;
 		}
 	}
 
 	get<T>(type: Ctor<T>): Ctor<T> | null {
-		const key = this.key(type);
+		const key = this._key(type);
 		const provider = this.providers.get(key);
 		return provider || null;
 	}
 
-	key<T>(type: Ctor<T>): string {
+	private _key<T>(type: Ctor<T>): string {
 		const key = Reflect.getMetadata(ContainerKeys.TOKEN_KEY, type);
 		if (!key) {
 			throw TypeError(`not token for ${type.name} remember to use decorator`);
